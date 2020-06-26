@@ -74,12 +74,11 @@ int main()
 	vector<string> aux;
 	string linha;
 	int vertice;
-	//ios_base :: sync_with_stdio(0); cin.tie(0);
 	while(1)
 	{
 		cin >> n >> m;
 		if (!n && !m) return 0; //Condição de saída do while
-		grafo.assign(n * m, vector<int> ());	//O + 2 é para garantir que não acesse possíções indevidas
+		grafo.assign(n * m, vector<int> ());
 		for (int i = 0 ; i < n ; i++)
 		{
 			cin >> linha;

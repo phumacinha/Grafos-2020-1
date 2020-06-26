@@ -1,3 +1,18 @@
+/*
+Disciplina:
+	Algoritmo em Grafos - GCC218
+
+Integrantes: 
+	Igor Antônio dos Santos Alves Mendes
+	Isaías Gonçalves Ribeiro
+	Pedro Antônio de Souza
+
+Nome do Exercício:
+	Domino - 2585
+
+Estratégia Adotada:
+
+*/
 #include <iostream> //Biblioteca padrão c++
 #include <vector> //Biblioteca para trabalhar com lista(vetor) mais facilmente no c++
 #include <stack> //Biblioteca para trabalhar com pilha mais facilmente no c++
@@ -6,23 +21,22 @@
 using namespace std; 
 
 int arestaAtual=0; //Inicio
-vector<vector<bool>> grafo; //Definido o grafo, no caso uma matriz, pois vector de vector é matriz, do tipo bool
+vector<vector<bool > > grafo; //Definido o grafo, no caso uma matriz, pois vector de vector é matriz, do tipo bool
 vector<int> resultados; //Uma vetor do resultado
 stack<int> caminho; //A pilha para empilhar os caminhos
-set<pair<int,int>> visitado; //Conjunto de dois valores para saber se foi visitado ou não
+set<pair<int,int > > visitado; //Conjunto de dois valores para saber se foi visitado ou não
 
 // verifica se a aresta foi visitada
 bool foiVisitado(pair<int,int> aresta){
-  	if(visitado.find(aresta) != visitado.end() ) return true;
-  	else return false;	
+	return (visitado.find(aresta) != visitado.end());
 }
 
 // pega o primeiro vertice que possua um caminho válido
 int filho(int pai){
-	for(int cont=0; cont < grafo[pai].size(); cont++){
-		if(grafo[pai][cont] && ! foiVisitado({pai,cont})) return cont;
+	for(int _filho=0; _filho < grafo[pai].size(); _filho++){
+		if(grafo[pai][_filho] && ! foiVisitado(make_pair(pai,_filho))) 
+			return _filho;
 	}
-	
 	return -1;
 }
 
@@ -33,7 +47,7 @@ void buscaEmProfundidade(int verticeAtual){
 	// se tem filho vai
 	if(verticeFilho != -1){
 		arestaAtual++;
-		visitado.insert({verticeAtual,verticeFilho});
+		visitado.insert(make_pair(verticeAtual,verticeFilho));
 		caminho.push(verticeAtual);
 		buscaEmProfundidade(verticeFilho);
 		
@@ -71,7 +85,7 @@ int main(){
 			arestaAtual = 0;
 			buscaEmProfundidade(cont);	
 		}
-        //max_element é da Biblioteca Algorithm
+        //max_element é da Biblioteca Algorithm que pega o maior numero da lista
 		cout << *max_element(resultados.begin(), resultados.end() ) << endl;
 		
 		// fazendo a limpa, para a proxima iteração
