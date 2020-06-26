@@ -11,6 +11,14 @@ Nome do Exercício:
 	Domino - 2585
 
 Estratégia Adotada:
+	Criamos 9 vértices para representar as enumerações possíveis das extremidades
+	das peças do dominó. Assim, modelamos um grafo direcionado com arcos representando
+	as peças restantes, isto é, para toda peça com enumeração i e j, haverá um arco 
+	ligando os vértices i e j. É importante notar que grafo poderá ser desconexo.
+	Com o grafo modelado, aplicamos uma busca em profundidade em todas as componentes conexas
+	e armazenamos em um vector o maior caminho percorrido (em número de arestas) em cada componente.
+	Após a execução da DFS em todas as componetes, verificamos qual é o maior caminho percorrido e
+	essa será a solução do problema.
 
 */
 #include <iostream> //Biblioteca padrão c++
