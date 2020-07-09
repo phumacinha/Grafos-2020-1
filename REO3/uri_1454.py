@@ -34,7 +34,7 @@ Estratégia Adotada:
 '''
 class GrafoMrLee():
     
-    """O construtor da class.
+    """Construtor da classe.
     
     :param n: quantidade de vértices do grafo (interseções entre ruas)
     """
