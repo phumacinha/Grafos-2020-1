@@ -41,13 +41,11 @@ class GrafoMrLee():
     def __init__(self, n:int):
         self.__n = n
 
-        # Variável que armazenará a maior altura entre pares de vértices.
-        # É inicializada como a matriz de adjacência do grafo para, posteriormente,
-        # ser utilizada na execução do algoritmo para encontrar a solução do problema.
-        self.__matriz_altura = list()
+        # Matriz de adjacência do grafo
+        self.__matriz_adjacencia = list()
 
-        # Inicializa a matriz de alturas
-        self.__inicializa_matriz_altura()
+        # Inicializa a matriz de adjacencia
+        self.__inicializa_matriz_adjacencia()
 
     """Adiciona arestas no grafo.
     
@@ -59,15 +57,15 @@ class GrafoMrLee():
     :type altura: int
     """
     def add_aresta(self, v1:int, v2:int, altura:int):
-        self.__matriz_altura[v1][v2] = altura
-        self.__matriz_altura[v2][v1] = altura
+        self.__matriz_adjacencia[v1][v2] = altura
+        self.__matriz_adjacencia[v2][v1] = altura
 
     """Inicializa matriz de altura. Para posições da matriz com índice de linha
     e coluna iguais, define valor como zero. Para as demais, define o valor
     como infinito."""
-    def __inicializa_matriz_altura(self):
+    def __inicializa_matriz_adjacencia(self):
         for i in range(self.__n):
-            self.__matriz_altura.append([0 if j == i else float('inf') for j in range(self.__n)])
+            self.__matriz_adjacencia.append([0 if j == i else float('inf') for j in range(self.__n)])
 
     """Calcula a menor altura máxima entre cada par de vértices do grafo,
     atualizando a matriz de alturas.
@@ -76,7 +74,7 @@ class GrafoMrLee():
     :rtype: list
     """
     def floyd_warshall_modificado(self) -> list:
-        matriz = self.__matriz_altura.copy()
+        matriz = self.__matriz_adjacencia.copy()
         for k in range(self.__n):
             for i in range(self.__n):
                 for j in range(self.__n):
