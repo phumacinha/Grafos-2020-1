@@ -1,6 +1,8 @@
 from dado.Mercado import Mercado
+from dado.Item import Item
+from json import JSONEncoder 
 
-class ListaMercado(object):
+class ListaMercado(JSONEncoder):
     def __init__(self, mercado:Mercado):
         self.mercado = mercado
         self.itens = []
@@ -8,7 +10,7 @@ class ListaMercado(object):
 
     def adicionar_item(self, item:Item):
         self.itens.append(item)
-        self.custo_total += item.valor
+        self.custo_total += item.custo
 
     def imprimir(self):
         mercado = self.mercado.nome
@@ -16,8 +18,7 @@ class ListaMercado(object):
         print('{}:'.format(mercado))
         print('-'*30)
 
-        for item in itens:
-            print('Produto: {} | Marca: {} | Valor: {.2f}'.format(item.produto, item.marca, item.valor))
+        for item in self.itens:
+            print('Produto: {} | Marca: {} | Valor: {:.2f}'.format(item.produto.nome, item.marca.nome, item.custo))
         
-        print('\nCusto: R$ {.2f}'.format(self.custo_total))
-
+        print('\nCusto: R$ {:.2f}'.format(self.custo_total))
